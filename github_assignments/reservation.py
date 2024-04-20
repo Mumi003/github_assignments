@@ -1,3 +1,7 @@
+#BCE0001125
+# NAme: Muminatou BArrow
+
+
 # Create a ticket reservation program. You've recently been employed as a developer by La vie 
 # travel and tours to design a python based program for the company to manage its ticket reservatiion
 # process. The program allows a user to first log into it by providing their username and password.
@@ -20,13 +24,20 @@
 # Note: U
 
 from datetime import datetime
+loc_list = []
+
+def loc_count():
+    global loc_list
+    return len(loc_list)
+
 def location():
+    global new_location
     global loc_list
 
-    print("--------------")
-    print("|  LOCATION  |")
-    print("--------------")
-    loc_list = []
+    print("---------------------")
+    print(f"|     LOCATION {loc_count()}    |")
+    print("---------------------")
+    
 
     while True:
         print("1.\tAdd new location\n2.\tRemove a location\n3.\tBack\n4.\tExit")
@@ -60,6 +71,10 @@ def location():
                 loc_list.append(loc_dict)
                 print(f"Location Added: \n")
                 print(loc_dict)
+                print("---------------------")
+                print(f"|     LOCATION {loc_count()}    |")
+                print("---------------------")
+    
             
                 ask1 = int(input("\n\nDo you want to add another location? \n1. Yes\n2. No "))
                 if ask1 not in [1, 2]:
@@ -77,8 +92,14 @@ def location():
             remove_location = int(input("Enter index here: "))
             if 0 <= remove_location < len(loc_list):
                 del loc_list[remove_location]
-                print(f"Success! {remove_location} has been removed")
-                print("Updated List:\n ", loc_list)
+                print(f"\nSuccess! Location on index {remove_location} has been removed")
+                print("Updated List:\n ")
+                print("---------------------")
+                print(f"|     LOCATION {loc_count()}    |")
+                print("---------------------")
+    
+                for loc_dict in loc_list:
+                    print(loc_dict)
                 continue
         elif op1 == 3:
             break
@@ -89,6 +110,7 @@ def location():
             continue
 
 def reservation():
+    global new_location
     global loc_list
 
     print("-----------------------------")
@@ -115,7 +137,7 @@ def reservation():
 
                 another_room = int(input("Would you like to add another room for the other option? \n1. Yes\n2. No "))
                 if another_room == 1:
-                    continue
+                    pass
                 else:
                     break
 
@@ -127,7 +149,7 @@ def reservation():
 
                 another_room = int(input("Would you like to add another room for the other option? \n1. Yes\n2. No "))
                 if another_room == 1:
-                    continue
+                    pass
                 else:
                     break
 
@@ -135,24 +157,49 @@ def reservation():
                 print("Wrong option! Please select 1 or 2!\n")
                 continue
 
+           
+
         else:
             print("Select a correct index!")
+            continue
 
-        total = price + price2
-        print("----------------------------")
-        print("|  Reservation Cost Total  |")
-        print("|         Checkout         |")
-        print("----------------------------")      
-        print(f"\nTotal price for reservation: \t{total}")
-        print(f"Reserved by: \t\t{customer_name}")
-        print(f"Phone Number: \t\t{customer_number}")
-        print(f"Time:  \t\t\t{datetime.now()}")
+    
+    total = price or price + price2 or price2
+    print("----------------------------")
+    print("|  Reservation Cost Total  |")
+    print("|         Checkout         |")
+    print("----------------------------")      
+    print(f"\nTotal price for reservation: \t{total}")
+    print(f"Reserved by: \t\t\t\t{customer_name}")
+    print(f"Phone Number: \t\t\t\t{customer_number}")
+    print(f"Time:  \t\t\t\t\t{datetime.now()}\n\n")
         
-        
 
 
+    # try:
+    #    with open('C:/Users/user/Documents/level300/Semester 2/github_assignments/reservation.txt', 'a') as to_File:
+    #         for loc_dict in loc_list:
+    #             to_File.write(f"{loc_dict} {datetime.now()}\n")
+                
+    # except Exception as e:
+    #      print(f"Error: {e}")
+
+    with open('C:/Users/user/Documents/level300/Semester 2/github_assignments/reservation.txt', 'a') as to_File:
+        for loc_dict in loc_list:
+            to_File.write(f"{loc_dict} {datetime.now()}\n")
+             
+
+    
+def save_data():
+    
+    with open("C:/Users/user/Documents/level300/Semester 2/github_assignments/reservation.txt", 'r') as file:
+        data = file.read()
+        print(data)
+    
+ 
 
 
+print("***WELCOME TO LA VIE TRAVEL AND TOURS***")
 print("----------------")
 print("|  LOGIN HERE  |")
 print("----------------")
@@ -166,14 +213,14 @@ while True:
         print("------------")
         print("|   MENU   |")
         print("------------")
-        print("1.\tLocation\n2.\tReservation\n3.\tSave Data\n3. \tExit\n")
+        print("1.\tLocation\n2.\tReservation\n3.\tSave Data\n4. \tExit\n")
         menu = int(input("Choose from 1-4: "))
         if menu == 1:
             location()
         elif menu == 2:
             reservation()
         elif menu == 3:
-            pass 
+            save_data() 
         elif menu == 4:
             break
         else:
