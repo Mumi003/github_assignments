@@ -1,0 +1,4 @@
+{'Name': 'labadi', 'City': 'accra', 'Country': 'ghana', 'Room for one': 450.0, 'Room for two': 400.0, 'Discount': 10.0} 2024-04-20 01:27:59.099406
+{'Name': 'labadi', 'City': 'acc', 'Country': 'gh', 'Room for one': 450.0, 'Room for two': 400.0, 'Discount': 3.0} 2024-04-20 01:35:04.543619
+{'Name': 'Labadi', 'City': 'Accra', 'Country': 'Ghana', 'Room for one': 450.0, 'Room for two': 400.0, 'Discount': 10.0} 2024-04-20 01:37:23.758783
+{'Name': 'Nima lodge', 'City': 'Nima', 'Country': 'Ghana', 'Room for one': 50.0, 'Room for two': 20.0, 'Discount': 0.0} 2024-04-20 01:45:25.475568
